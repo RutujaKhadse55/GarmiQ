@@ -48,7 +48,7 @@ export const useUserStore = create<UserState>((set) => {
   const storedLang = (localStorage.getItem('garmiq_language') as 'en' | 'hi' | 'mr') || 'en';
   const storedOnboarding = localStorage.getItem('garmiq_onboarding_completed') === 'true';
   const storedLowBandwidth = localStorage.getItem('garmiq_low_bandwidth') === 'true';
-  const storedWard = localStorage.getItem('garmiq_selected_ward') || 'ward-cp-01';
+  const storedWard = localStorage.getItem('garmiq_selected_ward') || 'ward-pune-01';
   const storedSubscriber = localStorage.getItem('garmiq_subscriber');
 
   return {
@@ -66,10 +66,10 @@ export const useUserStore = create<UserState>((set) => {
     },
 
     userLocation: {
-      lat: 28.6304,
-      lon: 77.2177,
-      address: 'Connaught Place Outer Ring, New Delhi',
-      ward_id: 'ward-cp-01'
+      lat: 18.5314,
+      lon: 73.8446,
+      address: 'Shivajinagar & FC Road, Pune',
+      ward_id: 'ward-pune-01'
     },
     setUserLocation: (loc) => set({ userLocation: loc }),
 
