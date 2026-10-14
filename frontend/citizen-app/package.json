@@ -6,10 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:android": "vite build && cap sync android",
+    "run:android": "cd ../.. && .\\run-emulator.bat",
+    "open:android": "cap open android",
     "preview": "vite preview",
     "test": "vitest run"
   },
   "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/camera": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/geolocation": "^6.0.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
     "@garmiq/api-client": "workspace:*",
     "@garmiq/types": "workspace:*",
     "@garmiq/ui": "workspace:*",
@@ -28,6 +37,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",

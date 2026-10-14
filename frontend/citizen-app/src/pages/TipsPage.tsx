@@ -11,9 +11,8 @@ import {
   Users,
   Activity,
   Building2,
-  ArrowRight,
-  ShieldCheck,
-  ChevronLeft
+  ChevronLeft,
+  ArrowRight
 } from 'lucide-react';
 
 export const TipsPage: React.FC = () => {
@@ -26,113 +25,113 @@ export const TipsPage: React.FC = () => {
   const safetyTips = [
     {
       icon: Droplets,
-      color: 'bg-cyan-50 text-cyan-600 border-cyan-200',
-      title: 'Stay Continuously Hydrated',
-      desc: 'Drink at least 3 to 4 litres of clean water or oral rehydration solution (ORS). Do not wait until you feel thirsty.',
-      actionable: 'Avoid caffeinated sodas and sugary drinks that hasten dehydration.'
+      color: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+      title: 'Stay Hydrated',
+      desc: 'Drink at least 3 to 4 litres of clean water or oral rehydration salts (ORS) daily. Do not wait until you feel thirsty.',
+      actionable: 'Carry a refillable water bottle when stepping outside in Pune.'
     },
     {
       icon: Clock,
-      color: 'bg-rose-50 text-rose-600 border-rose-200',
-      title: 'Avoid Peak Sunlight Hours',
-      desc: 'Reschedule all outdoor physical activity, construction, or travel away from 11:00 AM to 04:30 PM.',
-      actionable: 'Seek shade immediately if you must commute during midday.'
+      color: 'bg-[#FDF0F1] text-[#E5484D] border-[#F9C3C6]',
+      title: 'Reduce Outdoor Activity During Peak Heat',
+      desc: 'Reschedule heavy physical exertion, market visits, or outdoor transit between 11:30 AM and 04:30 PM.',
+      actionable: 'Plan commuting during early morning or post-sunset hours.'
     },
     {
       icon: Shirt,
-      color: 'bg-amber-50 text-amber-600 border-amber-200',
-      title: 'Wear Light Cotton Clothing',
-      desc: 'Opt for loose, light-colored breathable fabrics. Protect your head with a damp scarf, hat, or umbrella.',
-      actionable: 'Apply wet towels to the neck and wrists to cool down quickly.'
+      color: 'bg-[#FEF9EE] text-[#F3B43F] border-[#FCE3AA]',
+      title: 'Wear Light, Loose Clothing',
+      desc: 'Wear loose-fitting, light-colored cotton clothes. Protect your head with a cloth cap, scarf, or umbrella.',
+      actionable: 'Apply a damp cloth to your forehead and wrists if feeling flushed.'
     },
     {
       icon: Users,
-      color: 'bg-indigo-50 text-indigo-600 border-indigo-200',
-      title: 'Protect Vulnerable Individuals',
-      desc: 'Infants, pregnant women, outdoor laborers, and elders over 65 have higher risk of sudden thermal decompensation.',
-      actionable: 'Never leave children or pets inside parked vehicles.'
+      color: 'bg-[#EEF5FE] text-[#1769E0] border-[#D7E7FD]',
+      title: 'Check on Vulnerable People',
+      desc: 'Elderly citizens, pregnant women, infants, and chronic heart patients face the highest risk of thermal shock.',
+      actionable: 'Never leave children or elderly persons in stationary locked cars.'
     },
     {
       icon: Activity,
-      color: 'bg-red-50 text-red-600 border-red-200',
-      title: 'Recognise Heat Stroke Warning Signs',
-      desc: 'Watch for dizziness, headache, vomiting, hot dry skin without sweat, rapid pulse, and disorientation.',
-      actionable: 'If someone is confused or faints, move to shade and call 108 immediately.'
+      color: 'bg-[#FEF3ED] text-[#F47738] border-[#FCD2BE]',
+      title: 'Recognise Signs of Heat Illness',
+      desc: 'Watch for dizziness, extreme headache, vomiting, hot dry skin with cessation of sweating, and confusion.',
+      actionable: 'Move the person to shade immediately and dial 108 emergency services.'
     },
     {
       icon: Building2,
-      color: 'bg-blue-50 text-blue-600 border-blue-200',
-      title: 'Utilise Municipal Cooling Centres',
-      desc: 'Air-conditioned civic shelters and pyaao drinking points are operating freely across your ward.',
-      actionable: 'Rest in a cooling shelter for 20 minutes to reset your body core temperature.'
+      color: 'bg-[#EBFBF3] text-[#36B878] border-[#B7EDCE]',
+      title: 'Find a Cooling Centre',
+      desc: 'Pune Municipal Corporation operates public shaded shelters and air-conditioned civic halls across wards.',
+      actionable: 'Rest in a cooling centre for 15-20 minutes to reset core temperature.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#F5F9FF] pb-24">
+    <div className="min-h-screen bg-[#F5F8FC] pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E2EDF9] px-4 py-3 shadow-xs">
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E2EAF4] px-4 py-3 shadow-soft">
         <div className="flex items-center gap-3 max-w-md mx-auto">
           <button
             onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-xl bg-[#F5F9FF] border border-[#E2EDF9] flex items-center justify-center text-[#102A4C]"
+            className="w-9 h-9 rounded-2xl bg-[#F5F8FC] border border-[#E2EAF4] flex items-center justify-center text-[#173153] hover:bg-[#EEF5FE]"
+            aria-label="Back"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <div>
-            <h1 className="text-base font-bold text-[#102A4C]">
-              {t('nav.tips', 'Heat Safety Tips')}
+            <h1 className="text-sm font-bold text-[#173153]">
+              Heat Safety Guidelines
             </h1>
-            <p className="text-[11px] text-[#5B708B]">
-              {currentWard.name} • Certified Health Guidance
+            <p className="text-[11px] text-[#71829A]">
+              Pune Heat Action Plan • Public Health Advisory
             </p>
           </div>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 pt-4 space-y-4">
-        {/* Highlighted current risk banner */}
-        <div className="bg-linear-to-br from-white to-[#FFF4ED] p-4.5 rounded-3xl border border-[#FED7AA] shadow-soft">
+      <main className="max-w-md mx-auto px-4 pt-3.5 space-y-3.5">
+        {/* Prominent Current-Risk Banner */}
+        <div className="bg-white p-4.5 rounded-3xl border border-[#E2EAF4] shadow-soft">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] uppercase font-bold text-[#EA580C] tracking-wider">
-              Current Ward Risk
+            <span className="text-[10px] uppercase font-bold text-[#173153] tracking-wider">
+              Current Ward Condition
             </span>
             <RiskBadge level={currentWard.risk_level} size="sm" />
           </div>
-          <h2 className="text-sm font-bold text-[#9A3412] leading-snug">
-            Extreme Thermal Caution Active
+          <h2 className="text-base font-bold text-[#173153]">
+            {currentWard.name} ({currentWard.current_heat_index}°C)
           </h2>
-          <p className="text-xs text-[#5B708B] mt-1 leading-relaxed">
-            Follow the six life-saving heat safety protocols below during high ambient temperatures.
+          <p className="text-xs text-[#71829A] mt-1">
+            Extreme daytime solar radiation. Follow the six preventive guidelines below to avoid heat exhaustion.
           </p>
         </div>
 
-        {/* Actionable Tips Cards */}
+        {/* Safety Guidelines List */}
         <div className="space-y-3">
           {safetyTips.map((tip, idx) => {
             const Icon = tip.icon;
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-4 border border-[#E2EDF9] shadow-soft space-y-2 hover:border-[#B5D6FF] transition-all"
+                className="bg-white p-4 rounded-3xl border border-[#E2EAF4] shadow-soft space-y-2 hover:border-[#B6D6FC] transition-all"
               >
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${tip.color}`}>
+                <div className="flex items-start gap-3">
+                  <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 border ${tip.color}`}>
                     <Icon className="w-5 h-5" />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-[#102A4C]">
+                  <div className="min-w-0">
+                    <h3 className="text-xs font-bold text-[#173153] leading-snug">
                       {tip.title}
                     </h3>
+                    <p className="text-xs text-[#71829A] mt-1 leading-relaxed">
+                      {tip.desc}
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-xs text-[#5B708B] leading-relaxed">
-                  {tip.desc}
-                </p>
-
-                <div className="bg-[#F8FAFD] p-2 rounded-xl text-[11px] text-[#0866D9] font-medium flex items-center gap-1.5 border border-[#E2EDF9]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#0866D9] shrink-0" />
+                <div className="p-2.5 bg-[#F5F8FC] rounded-2xl border border-[#E2EAF4] text-[11px] font-semibold text-[#1769E0] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1769E0] shrink-0" />
                   <span>{tip.actionable}</span>
                 </div>
               </div>
@@ -140,16 +139,15 @@ export const TipsPage: React.FC = () => {
           })}
         </div>
 
-        {/* CTA to view cooling centres */}
-        <div className="pt-2">
-          <button
-            onClick={() => navigate('/map')}
-            className="w-full py-4 px-6 bg-[#0866D9] hover:bg-[#054EB0] text-white text-sm font-bold rounded-2xl shadow-elevated flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
-          >
-            <span>View Nearby Cooling Centres on Map</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+        {/* Find Relief Action */}
+        <button
+          onClick={() => navigate('/map')}
+          className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-[#1769E0] hover:bg-[#0E52BE] text-white text-xs font-bold rounded-2xl shadow-soft transition-all active:scale-[0.98]"
+        >
+          <Building2 className="w-4 h-4" />
+          <span>Find Nearby Pune Cooling Centres on Map</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
       </main>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '../stores/useUserStore';
-import { Bell, MapPin, Settings as SettingsIcon, SunMedium } from 'lucide-react';
+import { Bell, MapPin, ChevronDown, Sun } from 'lucide-react';
 import { MOCK_WARDS } from '@garmiq/api-client';
 
 interface AppHeaderProps {
@@ -16,65 +16,81 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { selectedWardId, setSelectedWardId, userLocation } = useUserStore();
+  const { selectedWardId, setSelectedWardId } = useUserStore();
 
   const currentWard = MOCK_WARDS.find((w) => w.id === selectedWardId) || MOCK_WARDS[0];
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    return 'Good evening';
+  };
+
+  const currentDate = new Date().toLocaleDateString('en-IN', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  });
+
   return (
-    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E2EDF9] px-4 py-3 shadow-xs">
-      <div className="flex items-center justify-between gap-2 max-w-md mx-auto">
-        {/* Left: Location & Ward Selector */}
-        <div className="flex items-center gap-2 min-w-0">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FF] text-[#0866D9] flex items-center justify-center shrink-0">
-            <MapPin className="w-5 h-5 text-[#0866D9]" />
+    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E2EAF4] px-4 py-2.5 shadow-soft">
+      <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
+        {/* Left: GarmiQ Sun Logo + Greeting & Locality */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 to-[#F47738] flex items-center justify-center shadow-soft shrink-0">
+            <Sun className="w-5 h-5 text-white" />
           </div>
+
           <div className="min-w-0">
-            <span className="text-[11px] font-medium text-[#5B708B] uppercase tracking-wider block">
-              {t('home.currentArea', 'Current Area')}
-            </span>
-            <select
-              value={selectedWardId}
-              onChange={(e) => setSelectedWardId(e.target.value)}
-              className="text-xs font-semibold text-[#102A4C] bg-transparent border-none p-0 focus:ring-0 cursor-pointer truncate max-w-[170px]"
-            >
-              {MOCK_WARDS.map((ward) => (
-                <option key={ward.id} value={ward.id}>
-                  {ward.name}
-                </option>
-              ))}
-            </select>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-bold text-[#173153] leading-tight">
+                {getGreeting()}
+              </span>
+              <span className="text-[10px] text-[#71829A]">• {currentDate}</span>
+            </div>
+
+            {/* Ward selector */}
+            <div className="flex items-center gap-1 mt-0.5">
+              <MapPin className="w-3 h-3 text-[#1769E0] shrink-0" />
+              <div className="relative">
+                <select
+                  value={selectedWardId}
+                  onChange={(e) => setSelectedWardId(e.target.value)}
+                  className="text-xs font-bold text-[#1769E0] bg-transparent border-none p-0 pr-4 focus:ring-0 cursor-pointer appearance-none truncate max-w-[190px]"
+                >
+                  {MOCK_WARDS.map((ward) => (
+                    <option key={ward.id} value={ward.id}>
+                      Pune • {ward.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-3 h-3 text-[#1769E0] absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right: Weather Pill & Actions */}
+        {/* Right: Temp Pill + Notification Icon */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Temperature indicator */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#FFF4ED] border border-[#FED7AA] rounded-full text-xs font-semibold text-[#EA580C]">
-            <SunMedium className="w-3.5 h-3.5 text-[#F97316] animate-spin-slow" />
+          {/* Live Temperature */}
+          <div className="px-2.5 py-1 bg-[#FEF3ED] border border-[#FCD2BE] rounded-full text-xs font-bold text-[#9E4010] flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#F47738] animate-pulse" />
             <span>{temperature}°C</span>
           </div>
 
-          {/* Alert button */}
+          {/* Notifications / Alerts Button */}
           <button
             onClick={() => navigate('/alerts')}
-            className="relative w-9 h-9 rounded-xl bg-[#F5F9FF] border border-[#E2EDF9] flex items-center justify-center text-[#102A4C] hover:bg-[#EDF5FF] transition-colors"
+            className="relative w-9 h-9 rounded-2xl bg-white border border-[#E2EAF4] flex items-center justify-center text-[#173153] hover:bg-[#F5F8FC] transition-colors"
             aria-label="Alerts"
           >
-            <Bell className="w-4 h-4 text-[#102A4C]" />
+            <Bell className="w-4 h-4 text-[#173153]" />
             {unreadAlertsCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#EF4444] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#E5484D] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
                 {unreadAlertsCount}
               </span>
             )}
-          </button>
-
-          {/* Settings button */}
-          <button
-            onClick={() => navigate('/settings')}
-            className="w-9 h-9 rounded-xl bg-[#F5F9FF] border border-[#E2EDF9] flex items-center justify-center text-[#102A4C] hover:bg-[#EDF5FF] transition-colors"
-            aria-label="Settings"
-          >
-            <SettingsIcon className="w-4 h-4 text-[#5B708B]" />
           </button>
         </div>
       </div>

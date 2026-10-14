@@ -18,61 +18,67 @@ export const RiskBadge: React.FC<RiskBadgeProps> = ({
 
   const config = {
     VERY_LOW: {
-      bg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      bg: 'bg-[#EBFBF3] text-[#1E7E4D] border-[#B7EDCE]',
       icon: ShieldCheck,
-      color: '#10B981',
-      label: t('risk.VERY_LOW', 'Very Low')
+      color: '#36B878',
+      label: t('risk.VERY_LOW', 'Very Low Risk')
     },
     LOW: {
-      bg: 'bg-lime-50 text-lime-800 border-lime-200',
+      bg: 'bg-[#EBFBF3] text-[#1E7E4D] border-[#B7EDCE]',
       icon: ShieldCheck,
-      color: '#84CC16',
+      color: '#36B878',
       label: t('risk.LOW', 'Low Risk')
     },
     MODERATE: {
-      bg: 'bg-amber-50 text-amber-800 border-amber-300',
+      bg: 'bg-[#FEF9EE] text-[#9A6B0A] border-[#FCE3AA]',
       icon: AlertCircle,
-      color: '#F59E0B',
+      color: '#F3B43F',
       label: t('risk.MODERATE', 'Moderate Risk')
     },
     HIGH: {
-      bg: 'bg-orange-50 text-orange-800 border-orange-300',
+      bg: 'bg-[#FEF3ED] text-[#9E4010] border-[#FCD2BE]',
       icon: AlertTriangle,
-      color: '#F97316',
+      color: '#F47738',
       label: t('risk.HIGH', 'High Risk')
     },
     VERY_HIGH: {
-      bg: 'bg-red-50 text-red-800 border-red-300',
+      bg: 'bg-[#FDF0F1] text-[#A81F26] border-[#F9C3C6]',
       icon: Flame,
-      color: '#EF4444',
+      color: '#E5484D',
       label: t('risk.VERY_HIGH', 'Very High Risk')
     },
     EXTREME: {
-      bg: 'bg-rose-100 text-rose-900 border-rose-400 font-bold',
+      bg: 'bg-[#FDF0F1] text-[#A81F26] border-[#E5484D] font-bold',
       icon: Flame,
-      color: '#DC2626',
+      color: '#E5484D',
       label: t('risk.EXTREME', 'Extreme Heatwave')
     }
   }[level] || {
-    bg: 'bg-amber-50 text-amber-800 border-amber-300',
+    bg: 'bg-[#FEF9EE] text-[#9A6B0A] border-[#FCE3AA]',
     icon: AlertCircle,
-    color: '#F59E0B',
+    color: '#F3B43F',
     label: level
   };
 
   const IconComponent = config.icon;
 
   const sizeClasses = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-1 text-xs',
-    lg: 'px-3.5 py-1.5 text-sm font-semibold'
+    sm: 'px-2 py-0.5 text-[10px] font-semibold',
+    md: 'px-2.5 py-1 text-xs font-semibold',
+    lg: 'px-3.5 py-1.5 text-sm font-bold'
+  }[size];
+
+  const iconSizes = {
+    sm: 'w-3 h-3',
+    md: 'w-3.5 h-3.5',
+    lg: 'w-4 h-4'
   }[size];
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border ${config.bg} ${sizeClasses} shadow-sm select-none`}
+      className={`inline-flex items-center gap-1.5 rounded-full border shadow-2xs ${config.bg} ${sizeClasses}`}
     >
-      {showIcon && <IconComponent className={size === 'lg' ? 'w-4 h-4' : 'w-3.5 h-3.5'} />}
+      {showIcon && <IconComponent className={iconSizes} style={{ color: config.color }} />}
       <span>{config.label}</span>
     </span>
   );

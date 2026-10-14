@@ -4,27 +4,30 @@ import { useTranslation } from 'react-i18next';
 export const MapLegend: React.FC = () => {
   const { t } = useTranslation();
 
-  const items = [
-    { label: t('risk.LOW', 'Low'), color: '#84CC16' },
-    { label: t('risk.MODERATE', 'Moderate'), color: '#F59E0B' },
-    { label: t('risk.HIGH', 'High'), color: '#F97316' },
-    { label: t('risk.VERY_HIGH', 'Very High'), color: '#EF4444' },
-    { label: t('risk.EXTREME', 'Extreme'), color: '#991B1B' }
+  const levels = [
+    { label: t('risk.VERY_LOW', 'V. Low'), color: '#36B878' },
+    { label: t('risk.LOW', 'Low'), color: '#72D28F' },
+    { label: t('risk.MODERATE', 'Mod'), color: '#F3B43F' },
+    { label: t('risk.HIGH', 'High'), color: '#F47738' },
+    { label: t('risk.VERY_HIGH', 'V. High'), color: '#E5484D' }
   ];
 
   return (
-    <div className="bg-white/95 backdrop-blur-md rounded-2xl p-2.5 border border-[#E2EDF9] shadow-soft text-[10px]">
-      <span className="font-bold text-[#102A4C] block mb-1.5 uppercase tracking-wider text-[9px]">
-        {t('map.riskLegend', 'Risk Level')}
-      </span>
-      <div className="flex items-center gap-1.5">
-        {items.map((item, idx) => (
-          <div key={idx} className="flex items-center gap-1">
+    <div className="bg-white/95 backdrop-blur-md rounded-2xl px-3 py-2 border border-[#E2EAF4] shadow-soft max-w-[240px]">
+      <div className="flex items-center justify-between gap-2 mb-1.5">
+        <span className="text-[10px] font-bold text-[#173153] uppercase tracking-wider">
+          Heat Risk
+        </span>
+        <span className="text-[9px] text-[#71829A] font-medium">PMC Wards</span>
+      </div>
+      <div className="flex items-center justify-between gap-1">
+        {levels.map((item, idx) => (
+          <div key={idx} className="flex flex-col items-center gap-0.5">
             <span
-              className="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs"
+              className="w-3.5 h-2 rounded-sm shadow-2xs"
               style={{ backgroundColor: item.color }}
             />
-            <span className="text-[#5B708B] font-medium hidden sm:inline">
+            <span className="text-[9px] font-semibold text-[#173153]">
               {item.label}
             </span>
           </div>

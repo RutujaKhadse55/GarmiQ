@@ -7,10 +7,10 @@ import {
   Droplet,
   Trees,
   Stethoscope,
-  Navigation2,
+  Navigation,
   MapPin,
   Clock,
-  Sparkles
+  ExternalLink
 } from 'lucide-react';
 
 interface CoolingCentreCardProps {
@@ -28,23 +28,23 @@ export const CoolingCentreCard: React.FC<CoolingCentreCardProps> = ({
   const typeConfig = {
     shelter: {
       icon: Building2,
-      label: t('map.shelters', 'Cooling Shelter'),
-      color: 'bg-blue-50 text-blue-700 border-blue-200'
+      label: 'Cooling Shelter',
+      color: 'bg-[#EEF5FE] text-[#1769E0] border-[#D7E7FD]'
     },
     water_point: {
       icon: Droplet,
-      label: t('map.water', 'Water Station'),
+      label: 'Water Station',
       color: 'bg-cyan-50 text-cyan-700 border-cyan-200'
     },
     park: {
       icon: Trees,
-      label: t('map.parks', 'Shaded Park'),
-      color: 'bg-emerald-50 text-emerald-700 border-emerald-200'
+      label: 'Shaded Park',
+      color: 'bg-[#EBFBF3] text-[#1E7E4D] border-[#B7EDCE]'
     },
     clinic: {
       icon: Stethoscope,
-      label: t('map.clinics', 'Heat Clinic'),
-      color: 'bg-rose-50 text-rose-700 border-rose-200'
+      label: 'Heat Clinic',
+      color: 'bg-[#FDF0F1] text-[#A81F26] border-[#F9C3C6]'
     }
   }[point.type] || {
     icon: Building2,
@@ -56,7 +56,6 @@ export const CoolingCentreCard: React.FC<CoolingCentreCardProps> = ({
 
   const handleDirections = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Open Google Maps directions in new tab
     const url = `https://www.google.com/maps/dir/?api=1&destination=${point.lat},${point.lon}`;
     window.open(url, '_blank');
   };
@@ -71,72 +70,74 @@ export const CoolingCentreCard: React.FC<CoolingCentreCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl p-4 border border-[#E2EDF9] shadow-soft hover:border-[#B5D6FF] transition-all">
-      <div className="flex items-start justify-between gap-3 mb-2.5">
-        <div className="flex items-start gap-2.5 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-[#EDF5FF] text-[#0866D9] flex items-center justify-center shrink-0">
+    <div className="bg-white rounded-3xl p-4 border border-[#E2EAF4] shadow-soft hover:border-[#B6D6FC] transition-all">
+      {/* Top Header: Icon + Info & Distance */}
+      <div className="flex items-start justify-between gap-2.5 mb-2.5">
+        <div className="flex items-start gap-3 min-w-0">
+          <div className="w-10 h-10 rounded-2xl bg-[#EEF5FE] text-[#1769E0] flex items-center justify-center shrink-0">
             <IconComponent className="w-5 h-5" />
           </div>
+
           <div className="min-w-0">
+            {/* Badges */}
             <div className="flex items-center gap-1.5 flex-wrap mb-1">
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${typeConfig.color}`}>
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${typeConfig.color}`}>
                 {typeConfig.label}
               </span>
               {point.capacity_status && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBFBF3] text-[#1E7E4D] border border-[#B7EDCE]">
                   {point.capacity_status}
                 </span>
               )}
             </div>
-            <h4 className="text-sm font-bold text-[#102A4C] leading-snug line-clamp-1">
+
+            {/* Title & Address 2-line hierarchy */}
+            <h4 className="text-sm font-bold text-[#173153] leading-snug line-clamp-1">
               {point.name}
             </h4>
-            <p className="text-xs text-[#5B708B] truncate mt-0.5">
-              {point.address}
+            <p className="text-xs text-[#71829A] truncate mt-0.5 flex items-center gap-1">
+              <MapPin className="w-3 h-3 text-[#71829A] shrink-0" />
+              <span>{point.address}</span>
             </p>
           </div>
         </div>
 
-        {/* Distance pill */}
-        <div className="text-right shrink-0">
-          <span className="text-xs font-bold text-[#0866D9] bg-[#EDF5FF] px-2 py-1 rounded-lg inline-block">
-            {point.distance_km < 1
-              ? `${point.distance_meters}m`
-              : `${point.distance_km} ${t('common.km', 'km')}`}
-          </span>
-        </div>
-      </div>
-
-      {/* Operating hours & Amenities */}
-      <div className="flex items-center gap-3 text-[11px] text-[#5B708B] mb-3">
-        <span className="flex items-center gap-1">
-          <Clock className="w-3 h-3 text-[#5B708B]" />
-          {point.operating_hours}
-        </span>
-        {point.amenities?.length > 0 && (
-          <span className="flex items-center gap-1 truncate">
-            <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
-            <span className="truncate">{point.amenities.slice(0, 2).join(' • ')}</span>
-          </span>
+        {/* Distance Badge */}
+        {point.distance_km !== undefined && (
+          <div className="shrink-0 text-right">
+            <span className="text-xs font-bold text-[#1769E0] bg-[#EEF5FE] border border-[#D7E7FD] px-2.5 py-1 rounded-full inline-block">
+              {point.distance_km < 1
+                ? `${point.distance_meters}m`
+                : `${point.distance_km} km`}
+            </span>
+          </div>
         )}
       </div>
 
-      {/* Action buttons */}
-      <div className="flex items-center gap-2 pt-2 border-t border-[#F0F4F8]">
+      {/* Operating Hours */}
+      {point.operating_hours && (
+        <div className="flex items-center gap-1.5 text-[11px] text-[#71829A] mb-3 px-1">
+          <Clock className="w-3 h-3 text-[#71829A]" />
+          <span>{point.operating_hours}</span>
+        </div>
+      )}
+
+      {/* Action Buttons */}
+      <div className="flex items-center gap-2 pt-2 border-t border-[#F5F8FC]">
         <button
           onClick={handleDirections}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#0866D9] hover:bg-[#054EB0] text-white text-xs font-semibold rounded-xl transition-all active:scale-[0.98]"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#1769E0] hover:bg-[#0E52BE] text-white text-xs font-bold rounded-2xl shadow-soft transition-all active:scale-[0.98]"
         >
-          <Navigation2 className="w-3.5 h-3.5 fill-current" />
-          <span>{t('common.directions', 'Directions')}</span>
+          <Navigation className="w-3.5 h-3.5 fill-current" />
+          <span>Directions</span>
         </button>
 
         <button
           onClick={handleViewOnMap}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#EDF5FF] hover:bg-[#D6E8FF] text-[#0866D9] text-xs font-semibold rounded-xl transition-all active:scale-[0.98]"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#EEF5FE] hover:bg-[#D7E7FD] text-[#1769E0] text-xs font-bold rounded-2xl border border-[#D7E7FD] transition-all active:scale-[0.98]"
         >
           <MapPin className="w-3.5 h-3.5" />
-          <span>{t('nav.map', 'View on Map')}</span>
+          <span>View on Map</span>
         </button>
       </div>
     </div>

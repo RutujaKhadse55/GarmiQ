@@ -9,37 +9,39 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#EDF5FF',
-          100: '#D6E8FF',
-          200: '#B5D6FF',
-          300: '#84BCFF',
-          400: '#4B99FE',
-          500: '#0866D9', // Primary blue
-          600: '#054EB0',
-          700: '#043E8F',
-          800: '#063574',
-          900: '#102A4C', // Dark Navy
+          50: '#EEF5FE',
+          100: '#D7E7FD',
+          200: '#B6D6FC',
+          300: '#87BCFA',
+          400: '#4F9AF6',
+          500: '#1769E0', // Primary blue
+          600: '#0E52BE',
+          700: '#0C419A',
+          800: '#0E377D',
+          900: '#173153', // Dark Navy text
         },
         surface: {
-          bg: '#F5F9FF',
+          bg: '#F5F8FC',
           card: '#FFFFFF',
-          border: '#E2EDF9',
-          muted: '#5B708B'
+          border: '#E2EAF4',
+          muted: '#71829A'
         },
         risk: {
-          verylow: '#10B981',
-          low: '#84CC16',
-          moderate: '#F59E0B',
-          high: '#F97316',
-          extreme: '#EF4444',
+          verylow: '#36B878',
+          low: '#36B878',
+          moderate: '#F3B43F',
+          high: '#F47738',
+          veryhigh: '#E5484D',
+          extreme: '#E5484D',
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 2px 12px -2px rgba(8, 102, 217, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03)',
-        'elevated': '0 10px 25px -5px rgba(8, 102, 217, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
+        'soft': '0 1px 3px 0 rgba(23, 49, 83, 0.05), 0 1px 2px -1px rgba(23, 49, 83, 0.05)',
+        'elevated': '0 4px 12px 0 rgba(23, 49, 83, 0.08), 0 2px 4px -2px rgba(23, 49, 83, 0.04)',
+        'floating': '0 10px 24px -4px rgba(23, 49, 83, 0.12), 0 6px 12px -4px rgba(23, 49, 83, 0.06)',
       }
     },
   },

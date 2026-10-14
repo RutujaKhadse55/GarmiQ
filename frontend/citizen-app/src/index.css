@@ -15,8 +15,8 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -25,16 +25,23 @@
   background: #cbd5e1;
   border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+
+/* MapLibre styling cleanups */
+.maplibregl-canvas {
+  outline: none;
+}
+.maplibregl-ctrl-attrib {
+  font-size: 9px !important;
+  opacity: 0.7;
 }
 
-/* Pulse animation for live indicators */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.75; transform: scale(1.05); }
+/* Marker pulse animations */
+@keyframes user-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(23, 105, 224, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(23, 105, 224, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(23, 105, 224, 0); }
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite ease-in-out;
+.user-location-pin {
+  animation: user-pulse 2s infinite;
 }
