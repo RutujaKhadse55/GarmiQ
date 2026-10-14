@@ -1,15 +1,12 @@
 {
   "name": "@garmiq/api-client",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc"
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
   },
   "dependencies": {
     "@garmiq/types": "workspace:*"
-  },
-  "devDependencies": {
-    "typescript": "^5.4.5"
   }
 }
