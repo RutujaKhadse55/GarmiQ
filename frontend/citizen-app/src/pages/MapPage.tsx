@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '../stores/useUserStore';
@@ -19,11 +19,13 @@ import {
   Stethoscope,
   Compass,
   ChevronDown,
-  MapPin
+  MapPin,
+  Navigation
 } from 'lucide-react';
 
 export const MapPage: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { selectedWardId, setSelectedWardId, lowBandwidthMode } = useUserStore();
 
@@ -73,7 +75,7 @@ export const MapPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F5F8FC] pb-24">
       <main className="max-w-md mx-auto px-4 pt-3 space-y-2.5">
-        {/* Top Ward Selector Header */}
+        {/* Top Ward Selector Header & Safe Route Quick Access */}
         <div className="flex items-center gap-2">
           <div className="relative flex-1">
             <MapPin className="w-4 h-4 text-[#1769E0] absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -97,6 +99,16 @@ export const MapPage: React.FC = () => {
             </select>
             <ChevronDown className="w-4 h-4 text-[#71829A] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
+
+          <button
+            type="button"
+            onClick={() => navigate('/route')}
+            className="flex items-center gap-1.5 px-3 py-2.5 bg-white border border-[#E2EAF4] hover:border-[#1769E0] rounded-2xl text-xs font-bold text-[#1769E0] shadow-soft shrink-0 transition-all active:scale-95"
+            title="Safe Shaded Route Finder"
+          >
+            <Navigation className="w-3.5 h-3.5" />
+            <span>Shaded Route</span>
+          </button>
         </div>
 
         {/* Compact Segmented Control / Filter Chips */}
