@@ -6,6 +6,7 @@
   "scripts": {
     "dev:dashboard": "pnpm --filter @garmiq/web-dashboard dev",
     "dev:citizen": "pnpm --filter @garmiq/citizen-app dev",
+    "android": ".\\run-emulator.bat",
     "dev:backend": "cd backend && uvicorn app.main:app --reload",
     "build": "pnpm -r run build",
     "test": "pnpm -r run test",

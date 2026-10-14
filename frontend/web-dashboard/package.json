@@ -10,17 +10,40 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@garmiq/types": "workspace:*",
     "@garmiq/api-client": "workspace:*",
+    "@garmiq/types": "workspace:*",
+    "@garmiq/ui": "workspace:*",
+    "@tanstack/react-query": "^5.104.2",
+    "axios": "^1.20.0",
+    "clsx": "^2.1.1",
+    "i18next": "^26.4.4",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "lucide-react": "^0.383.0",
+    "maplibre-gl": "^6.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "lucide-react": "^0.383.0"
+    "react-i18next": "^17.0.16",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1",
+    "tailwind-merge": "^3.7.0",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.16",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.6.1",
+    "msw": "^3.0.3",
+    "postcss": "^8.5.30",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "vite": "^5.2.11",
+    "vitest": "^1.6.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

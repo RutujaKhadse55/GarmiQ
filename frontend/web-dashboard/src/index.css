@@ -1,0 +1,89 @@
+@import 'maplibre-gl/dist/maplibre-gl.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: #DFEAF7;
+  }
+  
+  body {
+    @apply bg-[#F4F8FD] text-[#132D50] font-sans antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#102442] font-semibold tracking-tight;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F8FD;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4D6EB;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A6C2E2;
+}
+
+/* MapLibre styling cleanups */
+.maplibregl-canvas {
+  outline: none;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+  opacity: 0.6;
+}
+
+.maplibregl-popup-content {
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px -5px rgba(16, 36, 66, 0.15) !important;
+  border: 1px solid #DFEAF7 !important;
+  padding: 12px !important;
+  color: #132D50 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: #FFFFFF !important;
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: #FFFFFF !important;
+}
+
+/* Pulsing radar for live telemetry */
+@keyframes sensor-ping {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.sensor-active-dot {
+  animation: sensor-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Print styles for Heat Action Plan PDF generation */
+@media print {
+  aside, header, nav, .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
