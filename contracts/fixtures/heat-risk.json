@@ -1,0 +1,9 @@
+{
+  "location": {
+    "lat": 28.6139,
+    "lon": 77.209
+  },
+  "heat_index_celsius": 42.1,
+  "risk_level": "EXTREME_WARNING",
+  "advisory": "Dangerous temperature levels detected. Red alert in effect."
+}

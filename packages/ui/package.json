@@ -1,0 +1,13 @@
+{
+  "name": "@garmiq/ui",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "typescript": "^5.4.5"
+  }
+}

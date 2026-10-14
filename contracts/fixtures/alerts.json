@@ -1,0 +1,10 @@
+{
+  "alerts": [
+    {
+      "id": "alert-101",
+      "severity": "CRITICAL",
+      "headline": "Citywide Heatwave Emergency",
+      "issued_at": "2026-06-15T09:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HeatRiskResponse",
+  "type": "object",
+  "properties": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "lat",
+        "lon"
+      ]
+    },
+    "heat_index_celsius": {
+      "type": "number"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MODERATE",
+        "HIGH",
+        "EXTREME_WARNING"
+      ]
+    },
+    "advisory": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "location",
+    "heat_index_celsius",
+    "risk_level",
+    "advisory"
+  ]
+}

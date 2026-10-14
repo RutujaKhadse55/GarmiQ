@@ -1,0 +1,17 @@
+{
+  "name": "garmiq-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GarmiQ - Extreme Heat Risk Monitoring & Alert System",
+  "scripts": {
+    "dev:dashboard": "pnpm --filter @garmiq/web-dashboard dev",
+    "dev:citizen": "pnpm --filter @garmiq/citizen-app dev",
+    "dev:backend": "cd backend && uvicorn app.main:app --reload",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

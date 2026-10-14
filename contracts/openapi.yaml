@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: GarmiQ API
+  version: 0.1.0
+  description: Extreme Heat Risk Monitoring & Alert System API Contract
+paths:
+  /api/v1/health/:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+  /api/v1/heat-risk/:
+    get:
+      summary: Get heat risk index for coordinates
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Heat risk details
+  /api/v1/alerts/:
+    get:
+      summary: Retrieve active heat alerts
+      responses:
+        '200':
+          description: Active alert collection
+  /api/v1/safe-places/:
+    get:
+      summary: Find cooling centers and hydration spots
+      responses:
+        '200':
+          description: Safe place locations

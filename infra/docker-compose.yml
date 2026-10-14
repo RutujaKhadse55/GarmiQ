@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: garmiq-postgres
+    environment:
+      POSTGRES_USER: garmiq_user
+      POSTGRES_PASSWORD: garmiq_password
+      POSTGRES_DB: garmiq_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: garmiq-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://garmiq_user:garmiq_password@postgres:5432/garmiq_db
+      ENVIRONMENT: development
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
